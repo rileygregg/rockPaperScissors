@@ -1,5 +1,6 @@
 /* Rock paper Scissors
 
+Create array with the choices
 Prompt for a user to choose an input
 Once chosen, let the computer choose a random input
     If the user chooses "Rock" and the computer chooses "Scissors" then print "Win"
@@ -19,60 +20,94 @@ Create a function which declares "Win" to equal one point
 Declare a variable to tally the points. 
 Once User or Computer makes it to 5 points, prompt a window to declare the winner*/
 
-const playerSelectionChoice = prompt ("Rock, Paper or Scissors?");
-const handSelection = ["Rock", "Paper", "Scissors"];
-const playerSelection = handSelection.toLowerCase;
-// Below creates the random input made by the computer
-const computerSelection = math.floor (math.random() * handSelection.length);
-let playerScore = 0;
-let computerScore = 0 ;
+const handArray = ['Rock', 'Paper', 'Scissors'];
 
-// functions below start the choosing process
-function computerChoice() {
-    let result = computerSelection;
-    return computerSelection; 
-}
+let playerScore = 0
+let computerScore = 0
 
-function playerChoice() {
-    let result = playerSelection;
-    return playerSelection; 
-}
+// Randomly generate an input by computer
+const computerPlay= () => {    
+    return handArray [Math.floor(Math.random() * handArray.length)].toLowerCase();    
+};
 
-// function shows options for each round
-function playRound () {
-    if (playerSelection === "Rock" && computerSelection === "Scissors" || 
-        playerSelection === "Scissors" && computerSelection === "Paper" ||
-        playerSelection === "Paper" && computerSelection === "Rock" ) {
-        return ("You Win!") ;
-    } else if (playerSelection === "Rock" && computerSelection === "Rock" || 
-               playerSelection === "Scissors" && computerSelection === "Scissors" ||
-               playerSelection === "Paper" && computerSelection === "Paper" ) {
-               return ("You Tie!") ;
-    } else {
-        return ("You Lose!") ;
-    }
-}
+// TEST to make sure computer randomizes correctly
+// console.log(computerPlay());
 
-function gamePoints () {
-    for (i=0; i > 5; i++) {
-        if (playRound === "You Win!") {
-            return playerScore = i++ ;
-        } else if (playRound === "You Lose!") {
-            return computerScore = i++ ;
+// prompt the user to choose input
+const playersChoice = prompt("Will you choose Rock, Paper or Scissors?");
+const playerSelection = () => playersChoice.toLowerCase();
+
+// TEST to make sure the entry comes in as lower case
+// console.log(playerSelection());
+
+
+// Below plays one round with users input and random computer selection
+function playRound (user, computer) {
+    if (user === 'rock') {
+        if (computer === user) {
+            return "You tied the round"
+        } else if (computer === 'scissors') {
+            return "You won the round!"
         } else {
-            return ("Tie, No Points Added!")
+            return "You lost the round!"
         }
-    }    
-}
-
-function finalTally () {
-    if (playerScore > computerScore) {
-        return ("You Have Won The Game!")
-    } else if ( computerScore > playerScore) {
-        return ("You Have Lost The Game!")
+    } else if (user === 'paper') {
+        if (computer === user) {
+            return "You tied the round"
+        } else if (computer === 'rock') {
+            return "You won the round!"
+        } else {
+            return "You lost the round!"
+        }
+    } else if (user === 'scissors') {
+        if (computer === user) {
+            return "You tied the round"
+        } else if (computer === 'paper') {
+            return "You won the round!"
+        } else {
+            return "You lost the round!"
+        } 
     } else {
-        return ("You Have Tied The Game!")
-    }
-}
+        return "Wrong input, choose either rock, paper or scissors"
+        }
+    };
 
-console.log(playRound())
+
+// TEST to see if one round plays successfully
+    console.log(playRound(playerSelection(), computerPlay()));
+
+// function below is to keep score
+function game() {
+    playRound(playerSelection(), computerPlay());
+
+    for (let i=0; i < 5; i++) {
+        playerScore = i;
+        computerScore = i;
+        if (playerScore > 0 && playerScore > computerScore) {
+            return "You got one on the computer!"
+            } else if (playerScore > 1 && playerScore > computerScore) {
+            return "You are winning, you got another point!"
+            } else if (computerScore > 0 && playerScore < computerScore) {
+            console.log("You have no points yet")
+            } else if (computerScore > 1 && playerScore < computerScore) {
+                console.log("You are losing to the computer")
+            }
+    
+    }
+};
+
+function endOfGame() {
+    if (playerScore === 5) {
+        return "You won the game"
+    } else if (computerScore === 5) {
+        return "You lost the game"
+    }
+};
+
+
+
+
+// game();
+// endOfGame();
+// // console.log(playerScore);
+// // console.log(computerScore);
