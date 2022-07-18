@@ -1,113 +1,128 @@
-/* Rock paper Scissors
 
-Create array with the choices
-Prompt for a user to choose an input
-Once chosen, let the computer choose a random input
-    If the user chooses "Rock" and the computer chooses "Scissors" then print "Win"
-        else if the computer chooses "Rock" then print "Tie" 
-        else print "Lose" 
-    If the user chooses "Paper" and the computer chooses "Rock" then print "Win" 
-        else if the computer chooses "Paper" then print "Tie" 
-        else print "Lose" 
-    If the user chooses "Scissors" and the computer chooses "Paper" then print "Win" 
-        else if the computer chooses "Scissors" then print "Tie" 
-        else print "Lose" 
-    If "Win", add one point to user
-        else if "Tie" add no points to user or computer
-        else add point to computer 
-Create a function which declares "Win" to equal one point
-    else equals no points
-Declare a variable to tally the points. 
-Once User or Computer makes it to 5 points, prompt a window to declare the winner*/
+// DOM Attributes
+let playerScore = document.querySelector(".user-score-amount");
+let computerScore = document.querySelector(".com-score-amount");
 
-const handArray = ['Rock', 'Paper', 'Scissors'];
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+const promptSelectionUser = document.querySelector("user-prompt");
+const promptSelectionCom = document.querySelector("com-prompt");
 
-let playerScore = 0
-let computerScore = 0
+const handArray = ['rock', 'paper', 'scissors'];
 
-// Randomly generate an input by computer
-const computerPlay= () => {    
-    return handArray [Math.floor(Math.random() * handArray.length)].toLowerCase();    
+// Computers selection decided with random generator below
+const computerPlay= function() {    
+    return handArray [Math.floor(Math.random() * handArray.length)];    
 };
 
-// TEST to make sure computer randomizes correctly
 // console.log(computerPlay());
 
-// prompt the user to choose input
-const playersChoice = prompt("Will you choose Rock, Paper or Scissors?");
-const playerSelection = () => playersChoice.toLowerCase();
+// When choice selected by user, choice is to display on screen
+const rockSelect = rock.addEventListener('click', function() {
+    document.getElementById("user-prompt").textContent='Rock'
+});
+const paperSelect = paper.addEventListener('click', function() {
+    document.getElementById("user-prompt").textContent='Paper'
+});
+const scissorSelect = scissors.addEventListener('click', function() {
+    document.getElementById("user-prompt").textContent='Scissors'
+});
 
-// TEST to make sure the entry comes in as lower case
-// console.log(playerSelection());
+// FUNCTIONS
+// function below to display computers choice on screen
+function computerSelection() {
+    document.getElementById("com-prompt").textContent= computerPlay()
+}
 
+function userWins(user, computer) {
+    if (user = rockSelect && computer = 'scissors') {
+        playerScore++
+    } else if (user = paperSelect && computer = )
+}
 
-// Below plays one round with users input and random computer selection
-function playRound (user, computer) {
-    if (user === 'rock') {
-        if (computer === user) {
-            return "You tied the round"
-        } else if (computer === 'scissors') {
-            return "You won the round!"
+function comWins() {
+    alert("Computer wins a point!")
+    computerScore++
+}
+
+function tie() {
+    alert ("Tie, you both get a point!")
+    playerScore++
+    computerScore++
+}
+
+function userRock (user, computer) {
+    computer = computerSelection();
+
+    while (user == rockSelect) {
+        if (computer == 'rock') {
+            return tie()
+        } else if (computer == 'paper') {
+            return comWins()
         } else {
-            return "You lost the round!"
-        }
-    } else if (user === 'paper') {
-        if (computer === user) {
-            return "You tied the round"
-        } else if (computer === 'rock') {
-            return "You won the round!"
-        } else {
-            return "You lost the round!"
-        }
-    } else if (user === 'scissors') {
-        if (computer === user) {
-            return "You tied the round"
-        } else if (computer === 'paper') {
-            return "You won the round!"
-        } else {
-            return "You lost the round!"
-        } 
-    } else {
-        return "Wrong input, choose either rock, paper or scissors"
+            return userWins()
         }
     };
+}
 
+function userPaper (user, computer) {
+    computer = computerSelection();
 
-// TEST to see if one round plays successfully
-    console.log(playRound(playerSelection(), computerPlay()));
+    while (user == paperSelect) {
+        if (computer == 'paper') {
+            return tie()
+        } else if (computer == 'scissors') {
+            return comWins()
+        } else {
+            return userWins()
+        }
+    };
+}
 
-// function below is to keep score
-function game() {
-    playRound(playerSelection(), computerPlay());
+function userScissors (user, computer) {
+    computer = computerSelection();
 
-    for (let i=0; i < 5; i++) {
-        playerScore = i;
-        computerScore = i;
-        if (playerScore > 0 && playerScore > computerScore) {
-            return "You got one on the computer!"
-            } else if (playerScore > 1 && playerScore > computerScore) {
-            return "You are winning, you got another point!"
-            } else if (computerScore > 0 && playerScore < computerScore) {
-            console.log("You have no points yet")
-            } else if (computerScore > 1 && playerScore < computerScore) {
-                console.log("You are losing to the computer")
-            }
+    while (user == scissorSelect) {
+        if (computer == 'scissors') {
+            return tie()
+        } else if (computer == 'rock') {
+            return comWins()
+        } else {
+            return userWins()
+        }
+    };
+}
+
+function playRound() {
+    if (userRock) {
+        return 
+    }
+}
+// console.log(playRound(rockSelect, 'paper'));
     
-    }
-};
+    
+    
+//     if (user === newRock && computer === handArray[0]||
+//         user === newPaper && computer === handArray[1]||
+//         user === newScissor && computer === handArray[2]) {
+//             alert("Tie, Point For Both Players")
+//             playerScore +=1
+//             computerScore +=1;
+//     } else if (user === newRock && computer === handArray[1]||
+//         user === newPaper && computer === handArray[2]||
+//         user === newScissor && computer === handArray[0]) {
+//             alert("Point For The Computer")
+//             computerScore +=1
+//     } else {
+//             alert("Point For The User")
+//             playerScore +=1
+//         };
+        
+//     };
+    
+//  playRound();
 
-function endOfGame() {
-    if (playerScore === 5) {
-        return "You won the game"
-    } else if (computerScore === 5) {
-        return "You lost the game"
-    }
-};
 
 
-
-
-// game();
-// endOfGame();
-// // console.log(playerScore);
-// // console.log(computerScore);
+    

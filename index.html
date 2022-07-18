@@ -2,10 +2,37 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Rock Paper Scissors</title>
-        <script src="script.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css"></style>
+        <script src="script.js" defer></script>
     </head>
     <body>
-        
+
+    <h1 class="header">Rock, Paper, Scissors</h1>
+
+    <div class="prompt">
+        <h2 id="user-prompt"></h2>
+        <h2 id="com-prompt"></h2>
+    </div>
+
+    <div class="user-choice">  
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+    
+    <div class="user-score">
+        <p class="user-score-label">Player's Score =</p>
+        <div class="user-score-amount"></div>
+    </div> 
+    
+    <div class="computer-score">
+        <p class="com-score">Computer's Score = </p> 
+        <div class="com-score-amount"></div> 
+    </div>
+
     </body>
 </html>
+
