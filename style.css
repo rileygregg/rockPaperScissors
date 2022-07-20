@@ -24,25 +24,25 @@ body {
 
 }
 
-.user-prompt,
-.com-prompt {
+#user-prompt,
+#com-prompt {
     width: 130px;
+    height:35px;
     display: flex;
     justify-content: center;
+    font-style: italic;
+    font-size: 30px;
+    margin: 20px;
+    padding: 5px;
+    border-style: double;
 }
 
-.user-score {
+.score {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 20px;
 
-}
-
-.computer-score {
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Headers */
@@ -52,17 +52,10 @@ body {
     font-size: 50px;
 }
 
-.user-prompt,
-.com-prompt {
-    font-style: italic;
-    font-size: 30px;
-    margin: 20px;
-    padding: 5px;
-    border-style: double;
-}
-
 /* Buttons */
-button {
+#rock,
+#paper,
+#scissors {
     background-color: black;
     color: lightgrey;
     font-weight: bold;
@@ -73,4 +66,14 @@ button {
     margin-left:20px;
     border-radius: 50px;
     border-style: none;
+}
+
+/*ID*/
+#result-of-round {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    border: 5px;
 }

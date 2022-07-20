@@ -1,128 +1,88 @@
 
-// DOM Attributes
-let playerScore = document.querySelector(".user-score-amount");
-let computerScore = document.querySelector(".com-score-amount");
 
-const rock = document.querySelector("#rock");
-const paper = document.querySelector("#paper");
-const scissors = document.querySelector("#scissors");
-const promptSelectionUser = document.querySelector("user-prompt");
-const promptSelectionCom = document.querySelector("com-prompt");
+let playerScore = 0;
+let computerScore = 0;
 
-const handArray = ['rock', 'paper', 'scissors'];
+//dom select all buttons
+const buttons = document.querySelectorAll("input");
+
+const handArray = ['Rock', 'Paper', 'Scissors'];
 
 // Computers selection decided with random generator below
-const computerPlay= function() {    
-    return handArray [Math.floor(Math.random() * handArray.length)];    
-};
-
-// console.log(computerPlay());
-
-// When choice selected by user, choice is to display on screen
-const rockSelect = rock.addEventListener('click', function() {
-    document.getElementById("user-prompt").textContent='Rock'
-});
-const paperSelect = paper.addEventListener('click', function() {
-    document.getElementById("user-prompt").textContent='Paper'
-});
-const scissorSelect = scissors.addEventListener('click', function() {
-    document.getElementById("user-prompt").textContent='Scissors'
-});
-
-// FUNCTIONS
-// function below to display computers choice on screen
 function computerSelection() {
-    document.getElementById("com-prompt").textContent= computerPlay()
+    return  handArray[Math.floor(Math.random() * handArray.length)];
 }
 
-function userWins(user, computer) {
-    if (user = rockSelect && computer = 'scissors') {
-        playerScore++
-    } else if (user = paperSelect && computer = )
-}
+// function to play game. Place playerSelection as parameter 
+function playRound(playerSelection) {
+    let comSelection = computerSelection()
+    let result = "";
+    let finalResult = ""
+    
+  
+    if ((playerSelection == "Rock" && comSelection == 'Scissors') ||
+    (playerSelection == "Scissors" && comSelection == 'Paper') ||
+    (playerSelection == "Paper" && comSelection == 'Rock')) {
 
-function comWins() {
-    alert("Computer wins a point!")
-    computerScore++
-}
+        playerScore+= 1
+        result = `You win! ${playerSelection} beats ${comSelection}!
+            Player score: ${playerScore}
+            Computer score: ${computerScore}`
 
-function tie() {
-    alert ("Tie, you both get a point!")
-    playerScore++
-    computerScore++
-}
-
-function userRock (user, computer) {
-    computer = computerSelection();
-
-    while (user == rockSelect) {
-        if (computer == 'rock') {
-            return tie()
-        } else if (computer == 'paper') {
-            return comWins()
-        } else {
-            return userWins()
+        if (playerScore == 5) {
+            finalResult = "Game Over - You Win"
+            disableButtons()
         }
-    };
-}
 
-function userPaper (user, computer) {
-    computer = computerSelection();
+    } else if (playerSelection == comSelection) {
+        result = `It's a tie. You both chose ${playerSelection}!
+        Player score: ${playerScore}
+        Computer score: ${computerScore}`
+    
+    } else {
+        computerScore +=1
+        result = `You Lose! ${comSelection} beats ${playerSelection}!
+        Player score: ${playerScore}
+        Computer score: ${computerScore}`
 
-    while (user == paperSelect) {
-        if (computer == 'paper') {
-            return tie()
-        } else if (computer == 'scissors') {
-            return comWins()
-        } else {
-            return userWins()
+        if (computerScore == 5) {
+            finalResult = "Game Over - Computer Wins"
+            disableButtons()
         }
-    };
-}
-
-function userScissors (user, computer) {
-    computer = computerSelection();
-
-    while (user == scissorSelect) {
-        if (computer == 'scissors') {
-            return tie()
-        } else if (computer == 'rock') {
-            return comWins()
-        } else {
-            return userWins()
-        }
-    };
-}
-
-function playRound() {
-    if (userRock) {
-        return 
     }
+
+    document.getElementById('result-of-round').textContent = finalResult
+    document.getElementById('score-message').textContent = result
+    document.getElementById('com-prompt').textContent=comSelection
+    
+    console.log(rock)
+
+    return
 }
-// console.log(playRound(rockSelect, 'paper'));
-    
-    
-    
-//     if (user === newRock && computer === handArray[0]||
-//         user === newPaper && computer === handArray[1]||
-//         user === newScissor && computer === handArray[2]) {
-//             alert("Tie, Point For Both Players")
-//             playerScore +=1
-//             computerScore +=1;
-//     } else if (user === newRock && computer === handArray[1]||
-//         user === newPaper && computer === handArray[2]||
-//         user === newScissor && computer === handArray[0]) {
-//             alert("Point For The Computer")
-//             computerScore +=1
-//     } else {
-//             alert("Point For The User")
-//             playerScore +=1
-//         };
+
+function disableButtons() {
+    buttons.forEach(button => {
+        button.disabled = true
+    })
+}
+
+buttons.forEach(button => {
+    button.addEventListener('click', function(){
+        playRound(button.value)
+        document.getElementById("user-prompt").textContent=(button.value)
         
-//     };
-    
-//  playRound();
+        // endGame()
 
-
-
-    
+    })
+})
+// function endGame() {
+//     if (playerScore == 5) {
+//         finalResult = "Game Over - You Win"
+//         disableButtons()
+//     } else if (computerScore == 5) {
+//         finalResult = "Game Over - You Lose"
+//         disableButtons()
+//     } else {
+//         finalResult = "Keep playing!"
+//     }
+// }
