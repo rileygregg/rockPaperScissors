@@ -3,7 +3,7 @@
 let playerScore = 0;
 let computerScore = 0;
 
-//dom select all buttons
+//dom select all buttons. Use input instead of buttons in html
 const buttons = document.querySelectorAll("input");
 
 const handArray = ['Rock', 'Paper', 'Scissors'];
@@ -55,7 +55,7 @@ function playRound(playerSelection) {
     document.getElementById('score-message').textContent = result
     document.getElementById('com-prompt').textContent=comSelection
     
-    console.log(rock)
+    
 
     return
 }
@@ -71,18 +71,5 @@ buttons.forEach(button => {
         playRound(button.value)
         document.getElementById("user-prompt").textContent=(button.value)
         
-        // endGame()
-
     })
 })
-// function endGame() {
-//     if (playerScore == 5) {
-//         finalResult = "Game Over - You Win"
-//         disableButtons()
-//     } else if (computerScore == 5) {
-//         finalResult = "Game Over - You Lose"
-//         disableButtons()
-//     } else {
-//         finalResult = "Keep playing!"
-//     }
-// }
